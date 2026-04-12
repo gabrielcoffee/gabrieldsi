@@ -81,3 +81,7 @@ Added `src/components/AppIcon.tsx` — single app tile button (48px selected / 3
 ## Task 12: AppRow component (2026-04-11)
 
 Added `src/components/AppRow.tsx` — horizontal row mapping over apps to render `AppIcon` tiles, with click-to-select and click-again-to-open logic. `npx tsc -b` exits 0.
+
+## Task 13: AppNameCard component (2026-04-11)
+
+Added `src/components/AppNameCard.tsx` — absolute-positioned framed header showing the selected app's name and "by Gabriel" subtitle, sits above the app row on the bottom screen. `npx tsc -b` exits 0.
