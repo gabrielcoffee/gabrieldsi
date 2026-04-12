@@ -53,3 +53,7 @@ Added `src/hooks/useClock.ts` (React hook returning live `Date` updated every se
 ## Task 5: useKeyboardInput hook with TDD (2026-04-11)
 
 Added `src/hooks/useKeyboardInput.ts` (React hook binding window `keydown` to `onLeft`/`onRight`/`onConfirm` for ArrowLeft, ArrowRight, Enter/Space with cleanup on unmount) and `src/hooks/useKeyboardInput.test.ts` (4 passing tests). Followed red-green TDD cycle. Full suite: 10/10 passing.
+
+## Task 6: Global CSS and pixel rendering setup (2026-04-11)
+
+Filled in `src/styles/global.css` with CSS reset, warm gray page background `#e9e6df`, Silkscreen pixel font import from Google Fonts, flex-centered body, and a `.device-scale` descendant selector that enables `image-rendering: pixelated` and disables font smoothing. Updated `index.html` `<title>` from `portfolio-ds` to `Gabriel's DSi`. `npx tsc -b` exits 0; 10/10 tests still passing.
