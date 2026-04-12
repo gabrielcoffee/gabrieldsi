@@ -54,4 +54,4 @@ public/         Pixel sprites: about_me, empty, selected, info_bubble,
                 scrollbar, background
 ```
 
-See `changes.md` for a task-by-task log of how it was built.
+See [`CHANGELOG.md`](./CHANGELOG.md) for a versioned history of what's changed.
