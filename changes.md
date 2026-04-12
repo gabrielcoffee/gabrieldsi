@@ -41,3 +41,7 @@ Bootstrapped the project with Vite's `react-ts` template, installed runtime and 
 ## Task 2: Define types and app data (2026-04-11)
 
 Added `src/types.ts` (`AppId`, `PortfolioApp`) and `src/data/apps.ts` (five-app list with placeholder colors). `npx tsc -b` exits 0.
+
+## Task 3: Pure selection logic with TDD (2026-04-11)
+
+Added `src/logic/selection.ts` (`moveLeft`, `moveRight` clamped index helpers) and `src/logic/selection.test.ts` (4 passing tests). Followed red-green TDD cycle.
