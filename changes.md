@@ -93,3 +93,7 @@ Added `src/components/Scrollbar.tsx` — bottom-screen scrollbar with left/right
 ## Task 15: BottomScreen component (2026-04-11)
 
 Added `src/components/BottomScreen.tsx` — composition component assembling AppNameCard, AppRow, and Scrollbar inside a Screen with darker blue background (#12224a), passing all props through. `npx tsc -b` exits 0.
+
+## Task 16: Wire everything in App.tsx (2026-04-11)
+
+Replaced placeholder `App.tsx` with the full home screen integration — holds `selectedIndex` state, wires `useKeyboardInput` with `moveLeft`/`moveRight` callbacks, and renders `Device` with `TopScreen` + `BottomScreen`. `npx tsc -b` exits 0; 10/10 tests passing.
