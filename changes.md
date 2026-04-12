@@ -49,3 +49,7 @@ Added `src/logic/selection.ts` (`moveLeft`, `moveRight` clamped index helpers) a
 ## Task 4: useClock hook with TDD (2026-04-11)
 
 Added `src/hooks/useClock.ts` (React hook returning live `Date` updated every second via `setInterval`) and `src/hooks/useClock.test.ts` (2 passing tests using Vitest fake timers). Followed red-green TDD cycle. Full suite: 6/6 passing.
+
+## Task 5: useKeyboardInput hook with TDD (2026-04-11)
+
+Added `src/hooks/useKeyboardInput.ts` (React hook binding window `keydown` to `onLeft`/`onRight`/`onConfirm` for ArrowLeft, ArrowRight, Enter/Space with cleanup on unmount) and `src/hooks/useKeyboardInput.test.ts` (4 passing tests). Followed red-green TDD cycle. Full suite: 10/10 passing.
