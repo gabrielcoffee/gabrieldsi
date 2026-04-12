@@ -73,3 +73,7 @@ Added `src/components/InfoBar.tsx` — 12px-tall absolute-positioned top strip w
 ## Task 10: TopScreen component (2026-04-11)
 
 Added `src/components/TopScreen.tsx` — composes `Screen` + `InfoBar` with a blue gradient main area (photo placeholder) and a bottom welcome panel overlay showing the selected app's name and description. `npx tsc -b` exits 0.
+
+## Task 11: AppIcon component (2026-04-11)
+
+Added `src/components/AppIcon.tsx` — single app tile button (48px selected / 32px unselected) with Framer Motion bounce animation on selection, first-letter placeholder, and accessible aria attributes. `npx tsc -b` exits 0.
