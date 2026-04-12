@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Drop shadow beneath each real app icon (`shadow.png`).
+- Scrollbar thumb sprite (`selected_scrollbar.png`) that tracks selection: x = 20 + selectedIndex × 5.
+- Info bubble now renders above other bottom-screen elements (z-index).
 - Camera working.
 - Projects app.
 

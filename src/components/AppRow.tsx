@@ -9,7 +9,7 @@ interface AppRowProps {
 }
 
 const SLOT_PITCH = 64
-const SLOT_HEIGHT = 56
+const SLOT_HEIGHT = 60 // sprite (56) + shadow (4)
 const FRAME_WIDTH = 64
 const FRAME_HEIGHT = 80
 const SCREEN_WIDTH = 256

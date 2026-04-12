@@ -14,7 +14,7 @@ export function BottomScreen({ apps, selectedIndex }: BottomScreenProps) {
     <Screen>
       <AppNameCard app={apps[selectedIndex]} />
       <AppRow apps={apps} selectedIndex={selectedIndex} />
-      <Scrollbar />
+      <Scrollbar selectedIndex={selectedIndex} />
     </Screen>
   )
 }
