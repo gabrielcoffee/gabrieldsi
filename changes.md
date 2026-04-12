@@ -77,3 +77,7 @@ Added `src/components/TopScreen.tsx` — composes `Screen` + `InfoBar` with a bl
 ## Task 11: AppIcon component (2026-04-11)
 
 Added `src/components/AppIcon.tsx` — single app tile button (48px selected / 32px unselected) with Framer Motion bounce animation on selection, first-letter placeholder, and accessible aria attributes. `npx tsc -b` exits 0.
+
+## Task 12: AppRow component (2026-04-11)
+
+Added `src/components/AppRow.tsx` — horizontal row mapping over apps to render `AppIcon` tiles, with click-to-select and click-again-to-open logic. `npx tsc -b` exits 0.
