@@ -57,3 +57,7 @@ Added `src/hooks/useKeyboardInput.ts` (React hook binding window `keydown` to `o
 ## Task 6: Global CSS and pixel rendering setup (2026-04-11)
 
 Filled in `src/styles/global.css` with CSS reset, warm gray page background `#e9e6df`, Silkscreen pixel font import from Google Fonts, flex-centered body, and a `.device-scale` descendant selector that enables `image-rendering: pixelated` and disables font smoothing. Updated `index.html` `<title>` from `portfolio-ds` to `Gabriel's DSi`. `npx tsc -b` exits 0; 10/10 tests still passing.
+
+## Task 7: Screen component (2026-04-11)
+
+Added `src/components/Screen.tsx` — pure 256x192 pixel-perfect container with `position: relative`, `overflow: hidden`, DSi-blue background `#1a2742`, light text, accepts `children` and optional `style` override. `npx tsc -b` exits 0.
