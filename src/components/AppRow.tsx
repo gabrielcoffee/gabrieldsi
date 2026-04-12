@@ -15,7 +15,7 @@ const FRAME_HEIGHT = 80
 const SCREEN_WIDTH = 256
 const FRAME_LEFT = (SCREEN_WIDTH - FRAME_WIDTH) / 2 // 96
 
-const ROW_TOP_Y = 80
+const ROW_TOP_Y = 82
 
 export function AppRow({ apps, selectedIndex }: AppRowProps) {
   const totalSlots = apps.length + EMPTY_SLOT_COUNT

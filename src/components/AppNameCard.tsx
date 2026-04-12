@@ -9,7 +9,7 @@ const BUBBLE_HEIGHT = 85
 const SCREEN_WIDTH = 256
 
 
-const BUBBLE_TOP_Y = 3
+const BUBBLE_TOP_Y = 2
 
 export function AppNameCard({ app }: AppNameCardProps) {
   const left = (SCREEN_WIDTH - BUBBLE_WIDTH) / 2 // 3
