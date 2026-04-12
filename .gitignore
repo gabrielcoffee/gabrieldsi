@@ -1,0 +1,18 @@
+node_modules/
+dist/
+.vite/
+*.log
+
+# OS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+
+# Obsidian workspace state (keep notes, ignore UI state)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/appearance.json
+.obsidian/graph.json
+.obsidian/cache
