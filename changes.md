@@ -45,3 +45,7 @@ Added `src/types.ts` (`AppId`, `PortfolioApp`) and `src/data/apps.ts` (five-app 
 ## Task 3: Pure selection logic with TDD (2026-04-11)
 
 Added `src/logic/selection.ts` (`moveLeft`, `moveRight` clamped index helpers) and `src/logic/selection.test.ts` (4 passing tests). Followed red-green TDD cycle.
+
+## Task 4: useClock hook with TDD (2026-04-11)
+
+Added `src/hooks/useClock.ts` (React hook returning live `Date` updated every second via `setInterval`) and `src/hooks/useClock.test.ts` (2 passing tests using Vitest fake timers). Followed red-green TDD cycle. Full suite: 6/6 passing.
