@@ -17,10 +17,13 @@ body {
   font-family: 'Silkscreen', monospace;
   -webkit-font-smoothing: none;
   font-smooth: never;
+  overflow: hidden;
+}
+
+#root {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
 /* Everything inside the scaled device is pixel-perfect */

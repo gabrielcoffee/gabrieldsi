@@ -15,7 +15,6 @@ const FRAME_HEIGHT = 80
 const SCREEN_WIDTH = 256
 const FRAME_LEFT = (SCREEN_WIDTH - FRAME_WIDTH) / 2 // 96
 
-// ⬇ Tweak me: vertical offset of the app row (and selection frame) from the top of the bottom screen.
 const ROW_TOP_Y = 80
 
 export function AppRow({ apps, selectedIndex }: AppRowProps) {

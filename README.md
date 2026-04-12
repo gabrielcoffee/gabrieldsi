@@ -1,6 +1,8 @@
 # Gabriel's DSi
 
-A personal portfolio site styled like a **Nintendo DSi home screen**. Use the arrow keys to scroll through the app tiles and Enter to open one. It's my portfolio, dressed up as the handheld I grew up with.
+I've decided to make my porfolio in the style of the menu in my favorite console of all time **Nintendo DSi**.
+It's really nostalgic and special for me, with a camera for a quick snap, background music, animations and etc.
+I didn't really want to make another portfolio like everyone else. Yeah the clean style is cool but I didn't feel like it represented me that well. I like a cozy space and the DSi had software that feels like home.
 
 <!-- screenshot: add later -->
 
@@ -28,30 +30,3 @@ Empty slots are selectable but do nothing on Enter — they're placeholders for 
 - **Framer Motion** for the sliding-row animation
 - **Vitest** + **Testing Library** for the tests
 - **Silkscreen** pixel font; pixel-art sprites rendered nearest-neighbor
-
-## Scripts
-
-| Command | What it does |
-|---|---|
-| `npm run dev` | Start the Vite dev server |
-| `npm run build` | Production build |
-| `npm run preview` | Preview the production build |
-| `npm test` | Run the Vitest suite once |
-| `npm run test:watch` | Vitest in watch mode |
-| `npm run lint` | ESLint |
-
-## Project layout
-
-```
-src/
-  components/   Screen, Device, TopScreen, BottomScreen, AppRow, AppIcon,
-                AppNameCard, Scrollbar, InfoBar
-  hooks/        useClock, useKeyboardInput
-  logic/        selection.ts (pure left/right clamp helpers)
-  data/         apps.ts (the list of real apps + empty-slot count)
-  styles/       global.css
-public/         Pixel sprites: about_me, empty, selected, info_bubble,
-                scrollbar, background
-```
-
-See [`CHANGELOG.md`](./CHANGELOG.md) for a versioned history of what's changed.

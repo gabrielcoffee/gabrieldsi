@@ -8,7 +8,7 @@ const BUBBLE_WIDTH = 250
 const BUBBLE_HEIGHT = 85
 const SCREEN_WIDTH = 256
 
-// ⬇ Tweak me: vertical offset of the info bubble from the top of the bottom screen.
+
 const BUBBLE_TOP_Y = 6
 
 export function AppNameCard({ app }: AppNameCardProps) {
