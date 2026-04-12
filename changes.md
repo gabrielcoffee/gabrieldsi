@@ -69,3 +69,7 @@ Added `src/components/Device.tsx` — scaled container that applies `.device-sca
 ## Task 9: InfoBar component (2026-04-11)
 
 Added `src/components/InfoBar.tsx` — 12px-tall absolute-positioned top strip with volume emoji (left), "Gabriel" (center-left), live MM/DD HH:MM via `useClock` (center-right), and battery emoji (right). `npx tsc -b` exits 0; 10/10 tests still passing.
+
+## Task 10: TopScreen component (2026-04-11)
+
+Added `src/components/TopScreen.tsx` — composes `Screen` + `InfoBar` with a blue gradient main area (photo placeholder) and a bottom welcome panel overlay showing the selected app's name and description. `npx tsc -b` exits 0.
