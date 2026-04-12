@@ -61,3 +61,7 @@ Filled in `src/styles/global.css` with CSS reset, warm gray page background `#e9
 ## Task 7: Screen component (2026-04-11)
 
 Added `src/components/Screen.tsx` — pure 256x192 pixel-perfect container with `position: relative`, `overflow: hidden`, DSi-blue background `#1a2742`, light text, accepts `children` and optional `style` override. `npx tsc -b` exits 0.
+
+## Task 8: Device component (2026-04-11)
+
+Added `src/components/Device.tsx` — scaled container that applies `.device-scale` class, stacks `top`/`bottom` ReactNode props vertically with an 8px hinge gap, and applies an integer `scale` transform (default 3x) for nearest-neighbor pixel scaling. `npx tsc -b` exits 0.
