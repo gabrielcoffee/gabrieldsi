@@ -7,21 +7,38 @@ interface DeviceProps {
   scale?: number
 }
 
-export function Device({ top, bottom, scale = 3 }: DeviceProps) {
+const SCREEN_WIDTH = 256
+const SCREEN_HEIGHT = 192
+const HINGE_GAP = 8
+
+export function Device({ top, bottom, scale = 2 }: DeviceProps) {
+  const unscaledHeight = SCREEN_HEIGHT * 2 + HINGE_GAP // 392
+
+  // Wrap the scaled element in a box whose layout size equals the *rendered*
+  // size, so flexbox on <body> reserves enough room and nothing gets clipped.
   return (
     <div
-      className="device-scale"
       style={{
-        transform: `scale(${scale})`,
-        transformOrigin: 'center',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: 8, // implied hinge gap in native pixels
+        width: SCREEN_WIDTH * scale,
+        height: unscaledHeight * scale,
+        position: 'relative',
       }}
     >
-      {top}
-      {bottom}
+      <div
+        className="device-scale"
+        style={{
+          transform: `scale(${scale})`,
+          transformOrigin: 'top left',
+          width: SCREEN_WIDTH,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: HINGE_GAP,
+        }}
+      >
+        {top}
+        {bottom}
+      </div>
     </div>
   )
 }

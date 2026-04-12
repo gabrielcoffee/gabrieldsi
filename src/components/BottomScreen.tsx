@@ -7,35 +7,14 @@ import { Scrollbar } from './Scrollbar'
 interface BottomScreenProps {
   apps: PortfolioApp[]
   selectedIndex: number
-  onSelect: (index: number) => void
-  onOpen: (index: number) => void
-  onLeft: () => void
-  onRight: () => void
 }
 
-export function BottomScreen({
-  apps,
-  selectedIndex,
-  onSelect,
-  onOpen,
-  onLeft,
-  onRight,
-}: BottomScreenProps) {
+export function BottomScreen({ apps, selectedIndex }: BottomScreenProps) {
   return (
-    <Screen style={{ background: '#12224a' }}>
+    <Screen>
       <AppNameCard app={apps[selectedIndex]} />
-      <AppRow
-        apps={apps}
-        selectedIndex={selectedIndex}
-        onSelect={onSelect}
-        onOpen={onOpen}
-      />
-      <Scrollbar
-        total={apps.length}
-        selectedIndex={selectedIndex}
-        onLeft={onLeft}
-        onRight={onRight}
-      />
+      <AppRow apps={apps} selectedIndex={selectedIndex} />
+      <Scrollbar />
     </Screen>
   )
 }

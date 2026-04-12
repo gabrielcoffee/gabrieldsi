@@ -1,27 +1,58 @@
 import type { PortfolioApp } from '../types'
 
 interface AppNameCardProps {
-  app: PortfolioApp
+  app: PortfolioApp | undefined
 }
 
+const BUBBLE_WIDTH = 250
+const BUBBLE_HEIGHT = 85
+const SCREEN_WIDTH = 256
+
+// ⬇ Tweak me: vertical offset of the info bubble from the top of the bottom screen.
+const BUBBLE_TOP_Y = 6
+
 export function AppNameCard({ app }: AppNameCardProps) {
+  const left = (SCREEN_WIDTH - BUBBLE_WIDTH) / 2 // 3
   return (
     <div
       style={{
         position: 'absolute',
-        top: 6, left: 16, right: 16,
-        height: 36,
-        border: '1px solid #f0f0f0',
-        background: 'rgba(255,255,255,0.08)',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 2,
+        left,
+        top: BUBBLE_TOP_Y,
+        width: BUBBLE_WIDTH,
+        height: BUBBLE_HEIGHT,
       }}
     >
-      <span style={{ fontSize: 10, fontWeight: 700 }}>{app.name}</span>
-      <span style={{ fontSize: 7, opacity: 0.8, marginTop: 1 }}>by Gabriel</span>
+      <img
+        src="/info_bubble.png"
+        alt=""
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          display: 'block',
+          pointerEvents: 'none',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#222',
+          textAlign: 'center',
+          padding: '0 16px',
+        }}
+      >
+        <span style={{ fontSize: 12, fontWeight: 700 }}>{app?.name ?? ''}</span>
+        <span style={{ fontSize: 7, opacity: 0.8, marginTop: 2 }}>
+          {app ? 'by Gabriel' : ''}
+        </span>
+      </div>
     </div>
   )
 }

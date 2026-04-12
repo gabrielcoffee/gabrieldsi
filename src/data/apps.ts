@@ -7,3 +7,6 @@ export const apps: PortfolioApp[] = [
   { id: 'camera',   name: 'Camera',   description: 'Say hi with your webcam.', color: '#8fd18f' },
   { id: 'contact',  name: 'Contact',  description: 'Get in touch.',          color: '#c28fe7' },
 ]
+
+/** Number of empty placeholder slots appended after the real apps. */
+export const EMPTY_SLOT_COUNT = 10
