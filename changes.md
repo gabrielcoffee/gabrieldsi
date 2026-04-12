@@ -1,0 +1,39 @@
+# Changes
+
+## Task 1: Scaffold Vite + React + TypeScript project (2026-04-11)
+
+Bootstrapped the project with Vite's `react-ts` template, installed runtime and dev dependencies, removed Vite boilerplate, and verified the dev server and test runner both work.
+
+### Created
+- `package.json`, `package-lock.json` — project manifest with `dev`, `build`, `lint`, `preview`, `test`, `test:watch` scripts.
+- `index.html` — Vite entry HTML.
+- `vite.config.ts` — minimal Vite config with React plugin.
+- `vitest.config.ts` — separate Vitest config (jsdom env, globals, `src/test-setup.ts` setup file). Split from `vite.config.ts` to avoid a TS type clash between rolldown-vite 8 and the Vite 7 bundled inside Vitest 3.
+- `tsconfig.json`, `tsconfig.app.json`, `tsconfig.node.json` — Vite's standard project-references TS setup. `tsconfig.node.json` includes both config files.
+- `eslint.config.js` — Vite default ESLint flat config.
+- `src/main.tsx` — minimal root, imports `./styles/global.css`.
+- `src/App.tsx` — placeholder `<div>Gabriel's DSi — scaffold OK</div>`.
+- `src/styles/global.css` — empty (placeholder for Task 7).
+- `src/test-setup.ts` — imports `@testing-library/jest-dom`.
+- `public/favicon.svg`, `public/icons.svg` — Vite defaults (kept; not in deletion list).
+- `README.md` — Vite default (kept; not in deletion list).
+
+### Deleted
+- `src/App.css`, `src/index.css`, `public/vite.svg`, `src/assets/`.
+
+### Modified
+- `.gitignore` — merged Vite's defaults into the existing user-authored file, preserving Obsidian workspace-state ignores.
+
+### Dependencies
+- Runtime: `react`, `react-dom`, `framer-motion`.
+- Dev: `vite`, `@vitejs/plugin-react`, `typescript`, `@types/react`, `@types/react-dom`, `@types/node`, `vitest`, `@testing-library/react`, `@testing-library/jest-dom`, `jsdom`, ESLint stack.
+
+### Verified
+- `npx tsc -b` — exits 0, no type errors.
+- `npm run dev` — Vite 8.0.8 starts on `http://localhost:5173/`, HTTP 200.
+- `npm test` — exits 0 with "No test files found" (uses `--passWithNoTests`).
+
+### Notes / decisions
+- Vite's `react-ts` template now uses `tsconfig.app.json` + `tsconfig.node.json` with project references; `tsconfig.json` is just a router. Kept the template's structure rather than collapsing it.
+- Used `--passWithNoTests` on the `test` script so a clean tree exits 0 (plan said "exits cleanly"). The `test:watch` script still uses default behaviour.
+- Did not commit `.obsidian/` — it was untracked before this task and not in scope for "scaffold Vite".
