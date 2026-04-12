@@ -65,3 +65,7 @@ Added `src/components/Screen.tsx` — pure 256x192 pixel-perfect container with 
 ## Task 8: Device component (2026-04-11)
 
 Added `src/components/Device.tsx` — scaled container that applies `.device-scale` class, stacks `top`/`bottom` ReactNode props vertically with an 8px hinge gap, and applies an integer `scale` transform (default 3x) for nearest-neighbor pixel scaling. `npx tsc -b` exits 0.
+
+## Task 9: InfoBar component (2026-04-11)
+
+Added `src/components/InfoBar.tsx` — 12px-tall absolute-positioned top strip with volume emoji (left), "Gabriel" (center-left), live MM/DD HH:MM via `useClock` (center-right), and battery emoji (right). `npx tsc -b` exits 0; 10/10 tests still passing.
