@@ -85,3 +85,7 @@ Added `src/components/AppRow.tsx` — horizontal row mapping over apps to render
 ## Task 13: AppNameCard component (2026-04-11)
 
 Added `src/components/AppNameCard.tsx` — absolute-positioned framed header showing the selected app's name and "by Gabriel" subtitle, sits above the app row on the bottom screen. `npx tsc -b` exits 0.
+
+## Task 14: Scrollbar component (2026-04-11)
+
+Added `src/components/Scrollbar.tsx` — bottom-screen scrollbar with left/right arrow buttons and a track whose thumb position tracks the selected app index. `npx tsc -b` exits 0.
