@@ -89,3 +89,7 @@ Added `src/components/AppNameCard.tsx` — absolute-positioned framed header sho
 ## Task 14: Scrollbar component (2026-04-11)
 
 Added `src/components/Scrollbar.tsx` — bottom-screen scrollbar with left/right arrow buttons and a track whose thumb position tracks the selected app index. `npx tsc -b` exits 0.
+
+## Task 15: BottomScreen component (2026-04-11)
+
+Added `src/components/BottomScreen.tsx` — composition component assembling AppNameCard, AppRow, and Scrollbar inside a Screen with darker blue background (#12224a), passing all props through. `npx tsc -b` exits 0.
