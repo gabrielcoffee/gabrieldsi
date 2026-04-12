@@ -37,3 +37,7 @@ Bootstrapped the project with Vite's `react-ts` template, installed runtime and 
 - Vite's `react-ts` template now uses `tsconfig.app.json` + `tsconfig.node.json` with project references; `tsconfig.json` is just a router. Kept the template's structure rather than collapsing it.
 - Used `--passWithNoTests` on the `test` script so a clean tree exits 0 (plan said "exits cleanly"). The `test:watch` script still uses default behaviour.
 - Did not commit `.obsidian/` — it was untracked before this task and not in scope for "scaffold Vite".
+
+## Task 2: Define types and app data (2026-04-11)
+
+Added `src/types.ts` (`AppId`, `PortfolioApp`) and `src/data/apps.ts` (five-app list with placeholder colors). `npx tsc -b` exits 0.
