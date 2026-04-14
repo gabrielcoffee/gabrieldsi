@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 export interface KeyboardHandlers {
   onLeft: () => void
@@ -9,23 +9,26 @@ export interface KeyboardHandlers {
 }
 
 export function useKeyboardInput(handlers: KeyboardHandlers): void {
+  const ref = useRef(handlers)
+  useEffect(() => { ref.current = handlers })
+
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       switch (e.key) {
-        case 'ArrowLeft':  handlers.onLeft(); break
-        case 'ArrowRight': handlers.onRight(); break
+        case 'ArrowLeft':  ref.current.onLeft(); break
+        case 'ArrowRight': ref.current.onRight(); break
         case 'Enter':
         case ' ':
-          if (handlers.onCameraShutter) handlers.onCameraShutter()
-          else handlers.onConfirm()
+          if (ref.current.onCameraShutter) ref.current.onCameraShutter()
+          else ref.current.onConfirm()
           break
         case 'l':
         case 'L':
         case 'r':
-        case 'R':          handlers.onCamera?.(); break
+        case 'R': ref.current.onCamera?.(); break
       }
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [handlers])
+  }, [])
 }

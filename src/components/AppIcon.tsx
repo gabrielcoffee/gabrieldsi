@@ -1,4 +1,4 @@
-import type { PortfolioApp } from '../types'
+import type { AppId, PortfolioApp } from '../types'
 
 interface AppIconProps {
   app?: PortfolioApp
@@ -10,9 +10,17 @@ const SPRITE_HEIGHT = 56
 const SHADOW_WIDTH = 42
 const SHADOW_HEIGHT = 4
 
+const SPRITES: Record<AppId, string> = {
+  about:    '/images/about_me.png',
+  projects: '/images/projects.gif',
+  music:    '/images/about_me.png',
+  camera:   '/images/about_me.png',
+  contact:  '/images/about_me.png',
+}
+
 export function AppIcon({ app, empty }: AppIconProps) {
   const isEmpty = empty || !app
-  const src = isEmpty ? '/images/empty.png' : '/images/about_me.png'
+  const src = isEmpty ? '/images/empty.png' : SPRITES[app.id]
   const alt = isEmpty ? '' : (app?.name ?? '')
   return (
     <div

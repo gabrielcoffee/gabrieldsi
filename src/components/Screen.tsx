@@ -13,6 +13,7 @@ export function Screen({ children, style }: ScreenProps) {
         height: 192,
         position: 'relative',
         overflow: 'hidden',
+        borderRadius: 3,
         backgroundColor: '#1a2742',
         backgroundImage: 'url(/images/background.png)',
         backgroundSize: '256px 192px',
