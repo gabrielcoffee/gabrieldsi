@@ -11,7 +11,7 @@ const SHADOW_WIDTH = 42
 const SHADOW_HEIGHT = 4
 
 const SPRITES: Record<AppId, string> = {
-  about:    '/images/about_me.png',
+  about:    '/images/about_me.gif',
   projects: '/images/projects.gif',
   music:    '/images/about_me.png',
   camera:   '/images/about_me.png',
