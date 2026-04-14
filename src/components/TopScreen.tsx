@@ -1,31 +1,27 @@
-import type { PortfolioApp } from '../types'
 import { Screen } from './Screen'
 import { InfoBar } from './InfoBar'
+import { CameraFeed } from './CameraFeed'
 
 interface TopScreenProps {
-  selectedApp: PortfolioApp | undefined
+  cameraStream: MediaStream | null
 }
 
-export function TopScreen({ selectedApp }: TopScreenProps) {
+export function TopScreen({ cameraStream }: TopScreenProps) {
   return (
-    <Screen>
+    <Screen style={{ backgroundImage: 'url(/images/topbg.png)' }}>
+      <CameraFeed stream={cameraStream} />
       <InfoBar />
-      {/* Welcome panel at bottom */}
-      <div
-        style={{
-          position: 'absolute',
-          left: 0, right: 0, bottom: 0,
-          height: 24,
-          background: 'rgba(0,0,0,0.5)',
-          padding: '4px 6px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 1,
-        }}
-      >
-        <span style={{ fontSize: 8, fontWeight: 700 }}>{selectedApp?.name ?? ''}</span>
-        <span style={{ fontSize: 7, opacity: 0.8 }}>{selectedApp?.description ?? ''}</span>
-      </div>
+      {/* Camera UI overlays — always visible */}
+      <img
+        src="/images/cameraL.png"
+        alt=""
+        style={{ position: 'absolute', left: 0, bottom: 0, width: 73, height: 21, display: 'block' }}
+      />
+      <img
+        src="/images/cameraR.png"
+        alt=""
+        style={{ position: 'absolute', right: 0, bottom: 0, width: 73, height: 21, display: 'block' }}
+      />
     </Screen>
   )
 }

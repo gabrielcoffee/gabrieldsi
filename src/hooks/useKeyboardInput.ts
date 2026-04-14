@@ -4,6 +4,8 @@ export interface KeyboardHandlers {
   onLeft: () => void
   onRight: () => void
   onConfirm: () => void
+  onCamera?: () => void
+  onCameraShutter?: () => void
 }
 
 export function useKeyboardInput(handlers: KeyboardHandlers): void {
@@ -13,7 +15,14 @@ export function useKeyboardInput(handlers: KeyboardHandlers): void {
         case 'ArrowLeft':  handlers.onLeft(); break
         case 'ArrowRight': handlers.onRight(); break
         case 'Enter':
-        case ' ':          handlers.onConfirm(); break
+        case ' ':
+          if (handlers.onCameraShutter) handlers.onCameraShutter()
+          else handlers.onConfirm()
+          break
+        case 'l':
+        case 'L':
+        case 'r':
+        case 'R':          handlers.onCamera?.(); break
       }
     }
     window.addEventListener('keydown', handler)

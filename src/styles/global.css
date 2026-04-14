@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
 
+@font-face {
+  font-family: 'RodinNTLG';
+  src: url('/fonts/RodinNTLG.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

@@ -25,7 +25,7 @@ export function AppNameCard({ app }: AppNameCardProps) {
       }}
     >
       <img
-        src="/info_bubble.png"
+        src="/images/info_bubble.png"
         alt=""
         style={{
           position: 'absolute',
@@ -49,8 +49,8 @@ export function AppNameCard({ app }: AppNameCardProps) {
           padding: '0 16px',
         }}
       >
-        <span style={{ fontSize: 12, fontWeight: 700 }}>{app?.name ?? ''}</span>
-        <span style={{ fontSize: 7, opacity: 0.8, marginTop: 2 }}>
+        <span style={{ fontSize: 12, fontWeight: 700, fontFamily: 'RodinNTLG, sans-serif' }}>{app?.name ?? ''}</span>
+        <span style={{ fontSize: 7, opacity: 0.8, marginTop: 2, fontFamily: 'RodinNTLG, sans-serif' }}>
           {app ? 'by Gabriel' : ''}
         </span>
       </div>

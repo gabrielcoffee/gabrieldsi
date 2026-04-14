@@ -8,7 +8,7 @@ const THUMB_WIDTH = 29
 const THUMB_HEIGHT = 21
 
 // ⬇ Tweak me: thumb position = THUMB_START_X + selectedIndex * THUMB_STEP
-const THUMB_START_X = 20
+const THUMB_START_X = 19
 const THUMB_STEP = 5
 
 export function Scrollbar({ selectedIndex }: ScrollbarProps) {
@@ -16,7 +16,7 @@ export function Scrollbar({ selectedIndex }: ScrollbarProps) {
   return (
     <>
       <img
-        src="/scrollbar.png"
+        src="/images/scrollbar.png"
         alt=""
         style={{
           position: 'absolute',
@@ -29,7 +29,7 @@ export function Scrollbar({ selectedIndex }: ScrollbarProps) {
         }}
       />
       <img
-        src="/selected_scrollbar.png"
+        src="/images/selected_scrollbar.png"
         alt=""
         style={{
           position: 'absolute',

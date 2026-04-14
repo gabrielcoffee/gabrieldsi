@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import { useAnimate, motion } from 'framer-motion'
+import { useEffect, useRef } from 'react'
 import type { PortfolioApp } from '../types'
 import { EMPTY_SLOT_COUNT } from '../data/apps'
 import { AppIcon } from './AppIcon'
@@ -15,11 +16,27 @@ const FRAME_HEIGHT = 80
 const SCREEN_WIDTH = 256
 const FRAME_LEFT = (SCREEN_WIDTH - FRAME_WIDTH) / 2 // 96
 
-const ROW_TOP_Y = 82
+const ROW_TOP_Y = 82      // moves the entire band (icons + selector frame) up/down
+const ICON_Y_OFFSET = (FRAME_HEIGHT - SLOT_HEIGHT) / 2.5  // moves only icons within the band; tweak to shift icons independently of the selector
+
+// Icons start from the very top of the bottom screen (clipped by overflow:hidden)
+// and drop into position — no overflow above the screen needed.
+const INTRO_START_Y = -(ROW_TOP_Y + ICON_Y_OFFSET + SLOT_HEIGHT) // ≈ -152
 
 export function AppRow({ apps, selectedIndex }: AppRowProps) {
   const totalSlots = apps.length + EMPTY_SLOT_COUNT
   const translateX = FRAME_LEFT - selectedIndex * SLOT_PITCH
+
+  const [selectorScope, animateSelector] = useAnimate()
+  const isFirstRender = useRef(true)
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    animateSelector(selectorScope.current, { scale: [1, 0.92, 1] }, { duration: 0.12, ease: 'easeInOut', delay: 0.12 })
+  }, [selectedIndex]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div
@@ -36,15 +53,22 @@ export function AppRow({ apps, selectedIndex }: AppRowProps) {
         style={{
           position: 'absolute',
           left: 0,
-          // Sprite (56 tall) vertically centered inside the 80-tall frame band.
-          top: (FRAME_HEIGHT - SLOT_HEIGHT) / 2,
+          top: ICON_Y_OFFSET,
           display: 'flex',
           flexDirection: 'row',
         }}
       >
         {Array.from({ length: totalSlots }).map((_, i) => (
-          <div
+          <motion.div
             key={i}
+            initial={{ y: INTRO_START_Y }}
+            animate={{ y: [INTRO_START_Y, 0, -50, 0, -18, 0, -6, 0] }}
+            transition={{
+              duration: 1.4,
+              delay: i * 0.1,
+              times: [0, 0.38, 0.53, 0.68, 0.77, 0.87, 0.93, 1.0],
+              ease: ['easeIn', 'easeOut', 'easeIn', 'easeOut', 'easeIn', 'easeOut', 'easeIn'],
+            }}
             style={{
               width: SLOT_PITCH,
               height: SLOT_HEIGHT,
@@ -55,13 +79,14 @@ export function AppRow({ apps, selectedIndex }: AppRowProps) {
             }}
           >
             {i < apps.length ? <AppIcon app={apps[i]} /> : <AppIcon empty />}
-          </div>
+          </motion.div>
         ))}
       </motion.div>
 
       {/* Fixed selection frame, centered */}
       <img
-        src="/selected.png"
+        ref={selectorScope}
+        src="/images/selected.png"
         alt=""
         style={{
           position: 'absolute',

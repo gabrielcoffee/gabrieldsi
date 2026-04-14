@@ -12,7 +12,7 @@ const SHADOW_HEIGHT = 4
 
 export function AppIcon({ app, empty }: AppIconProps) {
   const isEmpty = empty || !app
-  const src = isEmpty ? '/empty.png' : '/about_me.png'
+  const src = isEmpty ? '/images/empty.png' : '/images/about_me.png'
   const alt = isEmpty ? '' : (app?.name ?? '')
   return (
     <div
@@ -27,13 +27,11 @@ export function AppIcon({ app, empty }: AppIconProps) {
         alt={alt}
         style={{ width: SPRITE_WIDTH, height: SPRITE_HEIGHT, display: 'block' }}
       />
-      {!isEmpty && (
-        <img
-          src="/shadow.png"
-          alt=""
-          style={{ width: SHADOW_WIDTH, height: SHADOW_HEIGHT, display: 'block' }}
-        />
-      )}
+      <img
+        src="/images/shadow.png"
+        alt=""
+        style={{ width: SHADOW_WIDTH, height: SHADOW_HEIGHT, display: 'block' }}
+      />
     </div>
   )
 }
