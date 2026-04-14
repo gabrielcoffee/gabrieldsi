@@ -8,6 +8,9 @@ I didn't really want to make another portfolio like everyone else. Yeah the clea
 ## A look at the current version:
 <img width="549" height="805" alt="Screenshot 2026-04-14 at 4 14 34 PM" src="https://github.com/user-attachments/assets/92dda233-b947-4dc9-852b-cdfefdbb30ba" />
 
+## Where to see it online (still in beta)
+https://gabrieldsi.netlify.app/
+
 ## Running locally
 
 ```bash
