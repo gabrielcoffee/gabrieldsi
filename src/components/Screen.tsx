@@ -18,6 +18,7 @@ export function Screen({ children, style }: ScreenProps) {
         backgroundImage: 'url(/images/background.png)',
         backgroundSize: '256px 192px',
         backgroundRepeat: 'no-repeat',
+        imageRendering: 'pixelated',
         color: '#f0f0f0',
         ...style,
       }}

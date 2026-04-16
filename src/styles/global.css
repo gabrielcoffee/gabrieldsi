@@ -22,8 +22,7 @@ body {
   background: #e9e6df; /* warm light gray */
   color: #111;
   font-family: 'Silkscreen', monospace;
-  -webkit-font-smoothing: none;
-  font-smooth: never;
+  -webkit-font-smoothing: antialiased;
   overflow: hidden;
 }
 
@@ -34,9 +33,7 @@ body {
 }
 
 /* Everything inside the scaled device is pixel-perfect */
-.device-scale, .device-scale * {
+.device-scale img {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
-  -webkit-font-smoothing: none;
-  font-smooth: never;
 }

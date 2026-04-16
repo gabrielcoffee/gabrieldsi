@@ -28,43 +28,22 @@ export default function App() {
     if (selectedIndex < apps.length) playEnterApp()
   }, [selectedIndex, playEnterApp])
 
+  const onSelectIndex = useCallback((index: number) => {
+    setSelectedIndex((prev) => {
+      if (prev !== index) playMove()
+      return index
+    })
+  }, [playMove])
+
   const onCameraShutter = cameraStream ? () => playCamera() : undefined
 
   useKeyboardInput({ onLeft, onRight, onConfirm, onCamera: toggleCamera, onCameraShutter })
 
   return (
     <>
-      {/* Mute toggle — fixed to top-right of the page */}
-      <button
-        onClick={toggleMute}
-        aria-label={muted ? 'Unmute' : 'Mute'}
-        style={{
-          position: 'fixed',
-          top: 12,
-          right: 12,
-          zIndex: 100,
-          background: 'rgba(0,0,0,0.35)',
-          border: '1px solid rgba(255,255,255,0.2)',
-          borderRadius: 6,
-          color: '#fff',
-          fontSize: 18,
-          width: 36,
-          height: 36,
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backdropFilter: 'blur(4px)',
-        }}
-      >
-        <span className="material-icons" style={{ fontSize: 20, lineHeight: 1 }}>
-          {muted ? 'volume_off' : 'volume_up'}
-        </span>
-      </button>
-
       <Device
-        top={<TopScreen cameraStream={cameraStream} />}
-        bottom={<BottomScreen apps={apps} selectedIndex={selectedIndex} />}
+        top={<TopScreen cameraStream={cameraStream} muted={muted} toggleMute={toggleMute} />}
+        bottom={<BottomScreen apps={apps} selectedIndex={selectedIndex} onSelectIndex={onSelectIndex} onConfirm={onConfirm} />}
       />
     </>
   )
