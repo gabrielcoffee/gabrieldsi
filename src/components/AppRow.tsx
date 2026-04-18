@@ -13,6 +13,7 @@ interface AppRowProps {
   hideSelector?: boolean
   onDragStart?: () => void
   onDragEnd?: () => void
+  openingIndex?: number | null
 }
 
 const SLOT_PITCH = 64
@@ -35,7 +36,10 @@ const DRAG_DAMPEN = 0.4       // finger-to-row movement ratio (< 1 = heavier fee
 // Only the first 4 apps get the drop animation, staggered right-to-left
 const ANIMATED_COUNT = 4
 
-export function AppRow({ apps, selectedIndex, onSelectIndex, onConfirm, hideSelector, onDragStart, onDragEnd }: AppRowProps) {
+// How far the icon travels upward when opening an app (off the top of the screen)
+const OPEN_FLY_Y = -250
+
+export function AppRow({ apps, selectedIndex, onSelectIndex, onConfirm, hideSelector, onDragStart, onDragEnd, openingIndex }: AppRowProps) {
   const totalSlots = apps.length + EMPTY_SLOT_COUNT
   const translateX = FRAME_LEFT - selectedIndex * SLOT_PITCH
 
@@ -44,8 +48,14 @@ export function AppRow({ apps, selectedIndex, onSelectIndex, onConfirm, hideSele
 
   const [selectorScope, animateSelector] = useAnimate()
   const isFirstRender = useRef(true)
-  const wasSelectorHidden = useRef(!!hideSelector)
+  const hasShownOnce = useRef(false)
 
+  // Track when selector first becomes visible (intro complete)
+  useEffect(() => {
+    if (!hideSelector) hasShownOnce.current = true
+  }, [hideSelector])
+
+  // Scale pulse on navigation (skip first render)
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false
@@ -55,16 +65,6 @@ export function AppRow({ apps, selectedIndex, onSelectIndex, onConfirm, hideSele
       animateSelector(selectorScope.current, { scale: [1, 0.92, 1] }, { duration: 0.12, ease: 'easeInOut', delay: 0.12 })
     }
   }, [selectedIndex]) // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Bounce the selector in when hideSelector goes from true to false
-  useEffect(() => {
-    if (hideSelector) {
-      wasSelectorHidden.current = true
-    } else if (wasSelectorHidden.current) {
-      wasSelectorHidden.current = false
-      animateSelector(selectorScope.current, { scale: [0, 1.15, 0.92, 1] }, { duration: 0.3, ease: 'easeOut' })
-    }
-  }, [hideSelector]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handlePanStart = useCallback(() => {
     isPanningRef.current = true
@@ -128,22 +128,29 @@ export function AppRow({ apps, selectedIndex, onSelectIndex, onConfirm, hideSele
       >
         {Array.from({ length: totalSlots }).map((_, i) => {
           const shouldAnimate = i < ANIMATED_COUNT
+          const isOpening = openingIndex === i
           return (
             <motion.div
               key={i}
               initial={shouldAnimate ? { y: INTRO_START_Y } : { y: 0 }}
-              animate={shouldAnimate
-                ? { y: [INTRO_START_Y, 0, -40, 0, -14, 0] }
-                : { y: 0 }
+              animate={
+                isOpening
+                  ? { y: OPEN_FLY_Y }
+                  : shouldAnimate
+                    ? { y: [INTRO_START_Y, 0, -40, 0, -14, 0] }
+                    : { y: 0 }
               }
-              transition={shouldAnimate
-                ? {
-                    duration: 1.2,
-                    delay: (ANIMATED_COUNT - 1 - i) * 0.1,
-                    times: [0, 0.42, 0.58, 0.75, 0.88, 1.0],
-                    ease: ['easeIn', 'easeOut', 'easeIn', 'easeOut', 'easeIn'],
-                  }
-                : undefined
+              transition={
+                isOpening
+                  ? { type: 'tween', duration: 0.6, ease: 'linear' }
+                  : shouldAnimate
+                    ? {
+                        duration: 1.2,
+                        delay: (ANIMATED_COUNT - 1 - i) * 0.1,
+                        times: [0, 0.42, 0.58, 0.75, 0.88, 1.0],
+                        ease: ['easeIn', 'easeOut', 'easeIn', 'easeOut', 'easeIn'],
+                      }
+                    : undefined
               }
               style={{
                 width: SLOT_PITCH,

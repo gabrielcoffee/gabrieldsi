@@ -32,7 +32,12 @@ body {
   justify-content: center;
 }
 
-/* Everything inside the scaled device is pixel-perfect */
+/* Everything inside the scaled device is pixel-perfect and non-selectable */
+.device-scale {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 .device-scale img {
   image-rendering: pixelated;
   image-rendering: crisp-edges;

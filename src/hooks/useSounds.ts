@@ -77,5 +77,29 @@ export function useSounds() {
 
   const toggleMute = useCallback(() => setMuted(m => !m), [])
 
-  return { muted, toggleMute, playEnterApp, playCamera, playMove }
+  const fadeOutMusic = useCallback(() => {
+    const menu = menuRef.current
+    if (!menu) return
+    const start = menu.volume
+    const steps = 15
+    let step = 0
+    const interval = setInterval(() => {
+      step++
+      menu.volume = Math.max(0, start * (1 - step / steps))
+      if (step >= steps) {
+        clearInterval(interval)
+        menu.pause()
+      }
+    }, 20)
+  }, [])
+
+  const restartMusic = useCallback(() => {
+    const menu = menuRef.current
+    if (!menu) return
+    menu.volume = 0.5
+    menu.currentTime = 0
+    menu.play().catch(() => {})
+  }, [])
+
+  return { muted, toggleMute, playEnterApp, playCamera, playMove, fadeOutMusic, restartMusic }
 }

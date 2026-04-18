@@ -6,6 +6,10 @@ export interface KeyboardHandlers {
   onConfirm: () => void
   onCamera?: () => void
   onCameraShutter?: () => void
+  onUp?: () => void
+  onDown?: () => void
+  onBack?: () => void
+  enabled?: boolean
 }
 
 export function useKeyboardInput(handlers: KeyboardHandlers): void {
@@ -14,6 +18,7 @@ export function useKeyboardInput(handlers: KeyboardHandlers): void {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
+      if (ref.current.enabled === false) return
       switch (e.key) {
         case 'ArrowLeft':  ref.current.onLeft(); break
         case 'ArrowRight': ref.current.onRight(); break
@@ -22,6 +27,10 @@ export function useKeyboardInput(handlers: KeyboardHandlers): void {
           if (ref.current.onCameraShutter) ref.current.onCameraShutter()
           else ref.current.onConfirm()
           break
+        case 'ArrowUp':    ref.current.onUp?.(); break
+        case 'ArrowDown':  ref.current.onDown?.(); break
+        case 'h':
+        case 'H': ref.current.onBack?.(); break
         case 'l':
         case 'L':
         case 'r':

@@ -53,7 +53,7 @@ export function AppNameCard({ app }: AppNameCardProps) {
         }}
       >
         <span style={{ fontSize: 12, fontWeight: 700, fontFamily: 'RodinNTLG, sans-serif' }}>{app?.name ?? ''}</span>
-        <span style={{ fontSize: 12, fontWeight: 300, opacity: 0.8, marginTop: -1, fontFamily: 'RodinNTLG, sans-serif' }}>
+        <span style={{ fontSize: 12, fontWeight: 300, opacity: 0.8, fontFamily: 'RodinNTLG, sans-serif' }}>
           {app ? 'by Gabriel' : ''}
         </span>
       </div>

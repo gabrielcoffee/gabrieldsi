@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { motion } from 'framer-motion'
 import type { PortfolioApp } from '../types'
 import { EMPTY_SLOT_COUNT } from '../data/apps'
@@ -12,22 +12,20 @@ interface BottomScreenProps {
   selectedIndex: number
   onSelectIndex: (index: number) => void
   onConfirm: () => void
+  introComplete: boolean
+  isOpeningApp?: boolean
 }
 
-const INTRO_DELAY_MS = 1400
-
-export function BottomScreen({ apps, selectedIndex, onSelectIndex, onConfirm }: BottomScreenProps) {
+export function BottomScreen({ apps, selectedIndex, onSelectIndex, onConfirm, introComplete, isOpeningApp }: BottomScreenProps) {
   const [isScrollbarActive, setIsScrollbarActive] = useState(false)
   const [isRowDragging, setIsRowDragging] = useState(false)
-  const [introComplete, setIntroComplete] = useState(false)
   const totalSlots = apps.length + EMPTY_SLOT_COUNT
 
   const isInteracting = isScrollbarActive || isRowDragging
+  const isEmptySlot = selectedIndex >= apps.length
 
-  useEffect(() => {
-    const id = setTimeout(() => setIntroComplete(true), INTRO_DELAY_MS)
-    return () => clearTimeout(id)
-  }, [])
+  const showBubble = introComplete && !isInteracting && !isEmptySlot && !isOpeningApp
+  const showSelector = !isInteracting && introComplete && !isEmptySlot && !isOpeningApp
 
   const handleScrollbarDragStart = useCallback(() => setIsScrollbarActive(true), [])
   const handleScrollbarDragEnd = useCallback(() => setIsScrollbarActive(false), [])
@@ -36,14 +34,11 @@ export function BottomScreen({ apps, selectedIndex, onSelectIndex, onConfirm }: 
 
   return (
     <Screen>
-      {/* Info bubble — hidden during intro and during any drag interaction */}
+      {/* Info bubble */}
       <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={introComplete && !isInteracting
-          ? { opacity: 1, scale: 1 }
-          : { opacity: 0, scale: 0 }
-        }
-        transition={{ duration: 0.3, ease: 'easeOut' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showBubble ? 1 : 0 }}
+        transition={{ duration: 0.15, ease: 'easeOut', delay: showBubble ? 0.08 : 0 }}
       >
         <AppNameCard app={apps[selectedIndex]} />
       </motion.div>
@@ -53,9 +48,10 @@ export function BottomScreen({ apps, selectedIndex, onSelectIndex, onConfirm }: 
         selectedIndex={selectedIndex}
         onSelectIndex={onSelectIndex}
         onConfirm={onConfirm}
-        hideSelector={isInteracting || !introComplete}
+        hideSelector={!showSelector}
         onDragStart={handleRowDragStart}
         onDragEnd={handleRowDragEnd}
+        openingIndex={isOpeningApp ? selectedIndex : null}
       />
       <Scrollbar
         selectedIndex={selectedIndex}
@@ -65,11 +61,11 @@ export function BottomScreen({ apps, selectedIndex, onSelectIndex, onConfirm }: 
         onDragEnd={handleScrollbarDragEnd}
       />
 
-      {/* White intro overlay */}
+      {/* White overlay — intro fade-out + app opening fade-in */}
       <motion.div
         initial={{ opacity: 1 }}
-        animate={{ opacity: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
+        animate={{ opacity: isOpeningApp ? 1 : 0 }}
+        transition={{ duration: isOpeningApp ? 1 : 0.8, ease: 'easeOut' }}
         style={{
           position: 'absolute',
           inset: 0,

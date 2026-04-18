@@ -7,9 +7,10 @@ interface TopScreenProps {
   cameraStream: MediaStream | null
   muted: boolean
   toggleMute: () => void
+  isOpeningApp?: boolean
 }
 
-export function TopScreen({ cameraStream, muted, toggleMute }: TopScreenProps) {
+export function TopScreen({ cameraStream, muted, toggleMute, isOpeningApp }: TopScreenProps) {
   return (
     <Screen style={{ backgroundImage: 'url(/images/topbg.png)' }}>
       <CameraFeed stream={cameraStream} />
@@ -34,8 +35,8 @@ export function TopScreen({ cameraStream, muted, toggleMute }: TopScreenProps) {
       {/* White intro overlay */}
       <motion.div
         initial={{ opacity: 1 }}
-        animate={{ opacity: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
+        animate={{ opacity: isOpeningApp ? 1 : 0 }}
+        transition={{ duration: isOpeningApp ? 1 : 0.8, ease: 'easeOut' }}
         style={{
           position: 'absolute',
           inset: 0,
